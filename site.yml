@@ -5,3 +5,7 @@
 - hosts: all
   roles:
   - common
+
+- hosts: controller
+  roles:
+  - mysql

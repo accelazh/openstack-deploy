@@ -25,3 +25,9 @@ test         ansible_ssh_host=10.224.147.162  ansible_connection=ssh  ansible_ss
 
 [all:vars]
 ntp_server = uk.pool.ntp.org
+
+[controller:vars]
+db_root_password = 123work
+
+[controller]
+test

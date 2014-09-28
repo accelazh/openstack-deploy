@@ -3,7 +3,7 @@ name=OpenStack Icehouse Repository
 baseurl=http://repos.fedorapeople.org/repos/openstack/openstack-icehouse/epel-7/
 enabled=1
 skip_if_unavailable=0
-gpgcheck=1
+gpgcheck=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-RDO-Icehouse
 priority=98
 
@@ -13,7 +13,7 @@ name=Extra Packages for Enterprise Linux 7 - $basearch
 mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch
 failovermethod=priority
 enabled=1
-gpgcheck=1
+gpgcheck=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
 
 [epel-debuginfo]
@@ -23,7 +23,7 @@ mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-7&arch=$ba
 failovermethod=priority
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-gpgcheck=1
+gpgcheck=0
 
 [epel-source]
 name=Extra Packages for Enterprise Linux 7 - $basearch - Source
@@ -32,6 +32,6 @@ mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-source-7&arch=$b
 failovermethod=priority
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-gpgcheck=1
+gpgcheck=0
 
 
