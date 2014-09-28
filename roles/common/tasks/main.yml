@@ -1,0 +1,18 @@
+---
+# This role contains common plays that will run on all nodes.
+
+- name: Create the local repository
+  copy: src=etc/yum.repos.d/local.repo dest=/etc/yum.repos.d/local.repo
+
+- name: Install ntp 
+  yum: name=ntp state=present
+  tags: ntp
+
+- name: Configure ntp file
+  template: src=etc/ntp.conf.j2 dest=/etc/ntp.conf
+  tags: ntp
+  notify: restart ntp
+
+- name: Start the ntp service
+  service: name=ntpd state=started enabled=true
+  tags: ntp

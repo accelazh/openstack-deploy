@@ -1,0 +1,27 @@
+#
+# MGMT: 
+# controller1  10.224.147.231
+# controller2  10.224.147.232
+# network1     10.224.147.233
+# network2     10.224.147.234
+# compute1     10.224.147.241
+# compute2     10.224.147.242
+#
+# DATA:
+# network1     100.100.100.1
+# network2     100.100.100.2
+# compute1     100.100.100.11
+# compute2     100.100.100.12
+#
+
+
+
+#controller1 ansible_ssh_host=10.224.147.231
+#network1    ansible_ssh_host=10.224.147.233
+#compute1    ansible_ssh_host=10.224.147.241
+#compute2    ansible_ssh_host=10.224.147.242
+
+test         ansible_ssh_host=10.224.147.162  ansible_connection=ssh  ansible_ssh_user=root
+
+[all:vars]
+ntp_server = uk.pool.ntp.org
