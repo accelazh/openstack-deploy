@@ -14,5 +14,5 @@
 - name: Start Mysql Service
   service: name=mysqld state=started enabled=true
 
-- name: Config Mysql Root User
-  mysql_user: name=root  password={{ db_root_password }} priv=*.*:ALL state=present
+#- name: Config Mysql Root User
+#  mysql_user: name=root  password={{ db_root_password }} priv=*.*:ALL state=present

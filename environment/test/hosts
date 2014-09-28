@@ -21,13 +21,15 @@
 #compute1    ansible_ssh_host=10.224.147.241
 #compute2    ansible_ssh_host=10.224.147.242
 
-test         ansible_ssh_host=10.224.147.162  ansible_connection=ssh  ansible_ssh_user=root
+controller1      ansible_ssh_host=10.224.147.162  ansible_connection=ssh  ansible_ssh_user=root
 
 [all:vars]
 ntp_server = uk.pool.ntp.org
+rabbitmq_user = rabbituser
+rabbitmq_password = rabbitpassword
 
 [controller:vars]
-db_root_password = 123work
+db_root_password = 
 
 [controller]
-test
+controller1

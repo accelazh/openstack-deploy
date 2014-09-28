@@ -1,0 +1,11 @@
+---
+# This role will install RabbitMQ and config RabbitMQ User
+
+- name: Install RabbitMQ
+  yum: name=rabbitmq-server state=present
+
+- name: Start RabbitMQ
+  service: name=rabbitmq-server state=started enabled=true
+
+- name: Configure RabbitMQ User
+  rabbitmq_user: user={{rabbitmq_user}}  password={{rabbitmq_password}}  vhost=/  state=present

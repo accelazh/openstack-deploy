@@ -19,3 +19,9 @@
 
 - name: Disable SELinux in config
   selinux: state=disabled
+
+- name: Config ect/hosts
+  template: src=etc/hosts.j2 dest=/etc/hosts
+
+- name: Config hostname
+  hostname: name={{ inventory_hostname }}
