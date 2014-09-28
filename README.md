@@ -4,7 +4,7 @@ openstack-deploy
 Deploy openstack with ansible
 
 OS : CentOS7
-RDO: Juno
+RDO: Icehouse
 
 V0.1 Target:
 Basic Openstack deploy.
