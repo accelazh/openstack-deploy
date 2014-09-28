@@ -24,12 +24,18 @@
 controller1      ansible_ssh_host=10.224.147.162  ansible_connection=ssh  ansible_ssh_user=root
 
 [all:vars]
+# NTP
 ntp_server = uk.pool.ntp.org
+
+# RabbitMQ
 rabbitmq_user = rabbituser
 rabbitmq_password = rabbitpassword
 
-[controller:vars]
-db_root_password = 
+# MySQL
+db_root_password = 123work
+mysql_vip = 10.224.147.162
+keystone_password = keystonepassword
+
 
 [controller]
 controller1

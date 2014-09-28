@@ -1,0 +1,14 @@
+---
+# This role will install and config keystone
+
+- name: Create Keystone DB and user
+  mysql_db: name=keystone login_host={{ mysql_vip }}
+
+- name: 
+
+- name: Install keystone and keystone client package
+  yum: name={{ item }} state=present
+  with_items:
+   - openstack-keystone
+   - python-keystoneclient
+  
