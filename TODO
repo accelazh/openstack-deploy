@@ -1,6 +1,11 @@
 [function]
 mysql HA
+rabbitmq HA
+
 
 
 [tunning]
 mysql tunning
+rabbitmq tunning
+keystone UUID -> PKI
+keystone -> apache
