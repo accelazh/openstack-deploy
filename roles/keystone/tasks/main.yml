@@ -5,16 +5,31 @@
   mysql_db: name=keystone state=present
 
 - name: Create Keystone DB User 
-  mysql_user: host={{ item }} name=keystone  password={{ keystone_mysql_password }} priv=keystone.*:ALL state=present
+  mysql_user: host={{ item }} name=keystone  password={{ keystone_mysql_password }} priv=keystone.*:ALL,GRANT state=present
   with_items:
+    - "{{ inventory_hostname }}"
     - "{{ management_network }}"
     - localhost
 - name: Install python-sqlalchemy because icehouse repo has bug now...
-  yum: name=https://repos.fedorapeople.org/repos/openstack/openstack-juno/epel-7/python-sqlalchemy-0.9.7-2.el7.centos.x86_64.rpm state=present
+  yum: name=ftp://ftp.muug.mb.ca/mirror/fedora/epel/beta/7/x86_64/python-sqlalchemy-0.8.4-1.el7.x86_64.rpm state=present
 
 - name: Install keystone and keystone client package
   yum: name={{ item }} state=present
   with_items:
    - openstack-keystone
    - python-keystoneclient
-  
+
+- name: Configure Keystone
+  template: src=etc/keystone/keystone.conf.j2 dest=/etc/keystone/keystone.conf owner=keystone group=keystone mode=0600
+
+- name: Keystone DB sync
+  command: /usr/bin/keystone-manage db_sync
+
+- name: Keystone log file
+  file: path=/var/log/keystone/keystone.log group=keystone owner=keystone 
+
+- name: Start Keytone
+  service: name=openstack-keystone  state=started  enabled=yes 
+
+- name: Wait Keystone startup
+  wait_for: port=35357  timeout=30

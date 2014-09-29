@@ -37,6 +37,13 @@ mysql_vip               = 10.224.147.162
 keystone_mysql_password = keystonepassword
 management_network      = 10.224.147.%
 
+############
+# Keystone #
+############
+keystone_admin_token = admin_token
+
+
+
 
 [controller]
 controller1
