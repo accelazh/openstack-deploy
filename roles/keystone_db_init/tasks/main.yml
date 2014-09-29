@@ -1,0 +1,11 @@
+---
+# This role will initial keystone default user/role/tenant
+- name: create service tenant
+  keystone_user:
+    endpoint: "{{ keystone_admin_url_protocol }}://{{ keystone_admin_url_vip }}:{{ keystone_admin_url_port }}/v2.0"
+    token: "{{ keystone_admin_token }}"
+    tenant: service
+    tenant_description: "Service Tenant"
+    state: present
+
+

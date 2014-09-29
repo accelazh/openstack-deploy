@@ -11,3 +11,4 @@
   - mysql
   - rabbitmq
   - keystone
+  - keystone_db_init
