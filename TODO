@@ -1,7 +1,8 @@
 [function]
 mysql HA
 rabbitmq HA
-
+glance registry HA support
+glance backend is file now...
 
 
 [tunning]

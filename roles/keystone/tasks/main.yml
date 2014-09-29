@@ -10,6 +10,7 @@
     - "{{ inventory_hostname }}"
     - "{{ management_network }}"
     - localhost
+
 - name: Install python-sqlalchemy because icehouse repo has bug now...
   yum: name=ftp://ftp.muug.mb.ca/mirror/fedora/epel/beta/7/x86_64/python-sqlalchemy-0.8.4-1.el7.x86_64.rpm state=present
 
