@@ -1,0 +1,17 @@
+---
+# This role is used to deploy and config nova service on compute node
+
+- name: Install nova-compute package
+  yum: name=openstack-nova-compute state=present
+
+- name: Configure nova config
+  template: src=etc/nova/nova.conf.j2 dest=/etc/nova/nova.conf owner=nova group=nova mode=0600
+
+- name: Start libvirtd
+  service: name=libvirtd  state=started  enabled=yes
+
+- name: Start messagebus
+  service: name=messagebus  state=started  enabled=yes
+
+- name: Start nova-compute
+  service: name=openstack-nova-compute  state=restarted  enabled=yes

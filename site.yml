@@ -13,3 +13,5 @@
   - keystone
   - keystone_db_init
   - glance
+  - nova_controller
+  - nova_compute

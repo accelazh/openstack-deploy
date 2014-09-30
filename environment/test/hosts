@@ -27,14 +27,20 @@ controller1      ansible_ssh_host=10.224.147.162  ansible_connection=ssh  ansibl
 # NTP
 ntp_server = uk.pool.ntp.org
 
-# RabbitMQ
-rabbitmq_user = rabbituser
-rabbitmq_password = rabbitpassword
-
 # MySQL
 db_root_password        = 123work
 mysql_vip               = 10.224.147.162
 management_network      = 10.224.147.%
+
+############
+# RabbitMQ #
+############
+rabbit_hosts                   = 10.224.147.162:5672
+rabbit_ha_queues               = False
+rabbitmq_user                  = rabbituser
+rabbitmq_password              = rabbitpassword
+
+
 
 ############
 # Keystone #
@@ -59,6 +65,21 @@ glance_admin_email             = limao@cisco.com
 glance_service_url_vip         = 10.224.147.162
 glance_service_url_port        = 9292
 glance_service_url_protocol    = http
+
+############
+#   Nova   #
+############
+nova_mysql_password            = novapassword
+nova_admin_password            = nova_service_password
+nova_admin_email               = limao@cisco.com
+nova_service_url_vip           = 10.224.147.162
+nova_service_url_port          = 8774
+nova_service_url_protocol      = http
+nova_vnc_vip                   = 10.224.147.162
+nova_vnc_port                  = 6080
+nova_vnc_protocol              = http
+virt_type                      = qemu   # Modify this to kvm in phy
+
 
 
 

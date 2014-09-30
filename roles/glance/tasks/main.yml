@@ -29,7 +29,7 @@
 - name: Modify glance log file owner, because after db_sync it will be own by root
   file: path=/var/log/glance/api.log group=glance owner=glance
 
-- name: create glance user
+- name: Create glance user
   keystone_user:
     endpoint: "{{ keystone_admin_url_protocol }}://{{ keystone_admin_url_vip }}:{{ keystone_admin_url_port }}/v2.0"
     token: "{{ keystone_admin_token }}"
@@ -39,7 +39,7 @@
     tenant: services
     state: present
 
-- name: associate role admin with glannce
+- name: Associate role admin with glance
   keystone_user:
     endpoint: "{{ keystone_admin_url_protocol }}://{{ keystone_admin_url_vip }}:{{ keystone_admin_url_port }}/v2.0"
     token: "{{ keystone_admin_token }}"
@@ -56,12 +56,12 @@
     type: image
     region: regionOne
     description: "OpenStack Image Service"
-    public_url: "{{ glance_service_url_protocol }}://{{ glance_service_url_vip }}:{{ glance_service_url_port }}/v2.0"
-    internal_url: "{{ glance_service_url_protocol }}://{{ glance_service_url_vip }}:{{ glance_service_url_port }}/v2.0"
-    admin_url: "{{ glance_service_url_protocol }}://{{ glance_service_url_vip }}:{{ glance_service_url_port }}/v2.0"
+    public_url: "{{ glance_service_url_protocol }}://{{ glance_service_url_vip }}:{{ glance_service_url_port }}"
+    internal_url: "{{ glance_service_url_protocol }}://{{ glance_service_url_vip }}:{{ glance_service_url_port }}"
+    admin_url: "{{ glance_service_url_protocol }}://{{ glance_service_url_vip }}:{{ glance_service_url_port }}"
 
 - name: Start glance-api
-  service: name=openstack-glance-api  state=started  enabled=yes
+  service: name=openstack-glance-api  state=restarted  enabled=yes
 
 - name: Start glance-registry
-  service: name=openstack-glance-registry  state=started  enabled=yes
+  service: name=openstack-glance-registry  state=restarted  enabled=yes
