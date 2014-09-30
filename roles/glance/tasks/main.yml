@@ -18,10 +18,10 @@
    - python-glanceclient
 
 - name: Configure glance-api
-  template: src=etc/glance/glance-api.conf.j2 dest=/etc/glance/glance-api.conf owner=glance group=glance mode=0600
+  template: src=etc/glance/glance-api.conf.j2 dest=/etc/glance/glance-api.conf owner=glance group=glance mode=0640
 
 - name: Configure glance-register
-  template: src=etc/glance/glance-registry.conf.j2 dest=/etc/glance/glance-registry.conf owner=glance group=glance mode=0600
+  template: src=etc/glance/glance-registry.conf.j2 dest=/etc/glance/glance-registry.conf owner=glance group=glance mode=0640
 
 - name: Glance DB sync
   command: /usr/bin/glance-manage db_sync

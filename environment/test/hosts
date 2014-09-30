@@ -80,7 +80,15 @@ nova_vnc_port                  = 6080
 nova_vnc_protocol              = http
 virt_type                      = qemu   # Modify this to kvm in phy
 
-
+############
+#  Neutron #
+############
+neutron_mysql_password          = neutronpassword
+neutron_admin_password          = neutron_service_password
+neutron_admin_email             = limao@cisco.com
+neutron_service_url_vip         = 10.224.147.162
+neutron_service_url_port        = 9696
+neutron_service_url_protocol    = http
 
 
 

@@ -18,7 +18,7 @@
    - python-keystoneclient
 
 - name: Configure keystone
-  template: src=etc/keystone/keystone.conf.j2 dest=/etc/keystone/keystone.conf owner=keystone group=keystone mode=0600
+  template: src=etc/keystone/keystone.conf.j2 dest=/etc/keystone/keystone.conf owner=keystone group=keystone mode=0640
 
 - name: Keystone DB sync
   command: /usr/bin/keystone-manage db_sync
