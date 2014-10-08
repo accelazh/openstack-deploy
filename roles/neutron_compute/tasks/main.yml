@@ -1,8 +1,5 @@
 ---
-# This role is used to deploy and config L2/L3 on network node
-- name: Config sysctl net.ipv4.ip_forward
-  sysctl: name=net.ipv4.ip_forward value=1 state=present 
-
+# This role is used to deploy and config neutron on compute node
 - name: Config sysctl net.ipv4.conf.all.rp_filter
   sysctl: name=net.ipv4.conf.all.rp_filter value=0 state=present 
 
@@ -12,7 +9,6 @@
 - name: Install neutron package
   yum: name={{ item }} state=present
   with_items:
-   - openstack-neutron
    - openstack-neutron-ml2
    - openstack-neutron-openvswitch
 
@@ -28,33 +24,11 @@
 - name: Create openvswitch config
   template: src=etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini.j2 dest=/etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini owner=neutron group=neutron mode=0640
 
-- name: Create DHCP agent config
-  template: src=etc/neutron/dhcp_agent.ini.j2 dest=/etc/neutron/dhcp_agent.ini owner=neutron group=neutron mode=0640
-
-- name: Create L3 agent config
-  template: src=etc/neutron/l3_agent.ini.j2 dest=/etc/neutron/l3_agent.ini owner=neutron group=neutron mode=0640
-
-- name: Create Metadata agent config
-  template: src=etc/neutron/metadata_agent.ini.j2 dest=/etc/neutron/metadata_agent.ini owner=neutron group=neutron mode=0640
-
 - name: Start Openvswitch
   service: name=openvswitch  state=started  enabled=yes
 
 - name: Create br-int
   openvswitch_bridge: bridge=br-int state=present
 
-- name: Create br-ex
-  openvswitch_bridge: bridge=br-ex state=present
-
 - name: Start neutron-openvswitch-agent
   service: name=neutron-openvswitch-agent  state=started  enabled=yes
-
-- name: Start neutron-l3-agent
-  service: name=neutron-l3-agent  state=started  enabled=yes
-
-- name: Start neutron-dhcp-agent
-  service: name=neutron-dhcp-agent  state=started  enabled=yes
-
-- name: Start neutron-metadata-agent
-  service: name=neutron-metadata-agent  state=started  enabled=yes
-
