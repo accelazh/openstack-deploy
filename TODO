@@ -7,6 +7,7 @@ neutron gre mtu
 dhcp_delete_namespaces = False
 router_delete_namespaces = False
 send_arp_for_ha
+br-ex + eth1
 
 
 [tunning]
