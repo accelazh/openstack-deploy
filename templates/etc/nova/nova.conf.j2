@@ -1205,6 +1205,7 @@ glance_api_servers="{{ glance_service_url_protocol }}://{{ glance_service_url_vi
 # The full class name of the network API class to use (string
 # value)
 #network_api_class=nova.network.api.API
+network_api_class=nova.network.neutronv2.api.API
 
 
 #
@@ -1326,6 +1327,7 @@ glance_api_servers="{{ glance_service_url_protocol }}://{{ glance_service_url_vi
 
 # Driver used to create ethernet devices. (string value)
 #linuxnet_interface_driver=nova.network.linux_net.LinuxBridgeInterfaceDriver
+linuxnet_interface_driver=nova.network.linux_net.LinuxOVSInterfaceDriver
 
 # Name of Open vSwitch bridge used with linuxnet (string
 # value)
@@ -1471,6 +1473,7 @@ glance_api_servers="{{ glance_service_url_protocol }}://{{ glance_service_url_vi
 
 # URL for connecting to neutron (string value)
 #neutron_url=http://127.0.0.1:9696
+neutron_url={{ neutron_service_url_protocol }}://{{ neutron_service_url_vip }}:{{ neutron_service_url_port }}
 
 # Timeout value for connecting to neutron in seconds (integer
 # value)
@@ -1479,10 +1482,12 @@ glance_api_servers="{{ glance_service_url_protocol }}://{{ glance_service_url_vi
 # Username for connecting to neutron in admin context (string
 # value)
 #neutron_admin_username=<None>
+neutron_admin_username=neutron
 
 # Password for connecting to neutron in admin context (string
 # value)
 #neutron_admin_password=<None>
+neutron_admin_password={{ neutron_admin_password }}
 
 # Tenant id for connecting to neutron in admin context (string
 # value)
@@ -1493,6 +1498,7 @@ glance_api_servers="{{ glance_service_url_protocol }}://{{ glance_service_url_vi
 # Note that with Keystone V3 tenant names are only unique
 # within a domain. (string value)
 #neutron_admin_tenant_name=<None>
+neutron_admin_tenant_name= services
 
 # Region name for connecting to neutron in admin context
 # (string value)
@@ -1501,6 +1507,7 @@ glance_api_servers="{{ glance_service_url_protocol }}://{{ glance_service_url_vi
 # Authorization URL for connecting to neutron in admin context
 # (string value)
 #neutron_admin_auth_url=http://localhost:5000/v2.0
+neutron_admin_auth_url={{ keystone_service_url_protocol }}://{{ keystone_service_url_vip }}:{{ keystone_service_url_port }}/v2.0
 
 # If set, ignore any SSL validation issues (boolean value)
 #neutron_api_insecure=false
@@ -1508,6 +1515,7 @@ glance_api_servers="{{ glance_service_url_protocol }}://{{ glance_service_url_vi
 # Authorization strategy for connecting to neutron in admin
 # context (string value)
 #neutron_auth_strategy=keystone
+neutron_auth_strategy=keystone
 
 # Name of Integration Bridge used by Open vSwitch (string
 # value)
@@ -1541,6 +1549,7 @@ glance_api_servers="{{ glance_service_url_protocol }}://{{ glance_service_url_vi
 
 # The full class name of the security API class (string value)
 #security_group_api=nova
+security_group_api=neutron
 
 
 #
@@ -1987,6 +1996,7 @@ glance_api_servers="{{ glance_service_url_protocol }}://{{ glance_service_url_vi
 # Firewall driver (defaults to hypervisor specific iptables
 # driver) (string value)
 #firewall_driver=nova.virt.libvirt.firewall.IptablesFirewallDriver
+firewall_driver=nova.virt.firewall.NoopFirewallDriver
 
 # Whether to allow network traffic from same network (boolean
 # value)
