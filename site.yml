@@ -16,3 +16,4 @@
   - nova_controller
   - nova_compute
   - neutron_controller
+  - neutron_network

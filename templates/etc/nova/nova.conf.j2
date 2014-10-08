@@ -626,10 +626,12 @@ auth_strategy=keystone
 # Set flag to indicate Neutron will proxy metadata requests
 # and resolve instance ids. (boolean value)
 #service_neutron_metadata_proxy=false
+service_neutron_metadata_proxy=true
 
 # Shared secret to validate proxies Neutron metadata requests
 # (string value)
 #neutron_metadata_proxy_shared_secret=
+neutron_metadata_proxy_shared_secret={{ metadata_proxy_shared_secret }}
 
 
 #

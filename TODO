@@ -3,6 +3,10 @@ mysql HA
 rabbitmq HA
 glance registry HA support
 glance backend is file now...
+neutron gre mtu
+dhcp_delete_namespaces = False
+router_delete_namespaces = False
+send_arp_for_ha
 
 
 [tunning]

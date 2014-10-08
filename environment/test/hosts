@@ -78,7 +78,10 @@ nova_service_url_protocol      = http
 nova_vnc_vip                   = 10.224.147.162
 nova_vnc_port                  = 6080
 nova_vnc_protocol              = http
+nova_metadata_ip               = 10.224.147.162
+nova_metadata_port             = 8775
 virt_type                      = qemu   # Modify this to kvm in phy
+
 
 ############
 #  Neutron #
@@ -91,12 +94,15 @@ neutron_service_url_port        = 9696
 neutron_service_url_protocol    = http
 type_drivers                    = gre
 tenant_network_types            = gre
+tunnel_types                    = gre
 mechanism_drivers               = openvswitch
 tunnel_id_ranges                = 1:1000
 enable_security_group           = True
 firewall_driver                 = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
-
-
+l2_population                   = False
+interface_driver                = neutron.agent.linux.interface.OVSInterfaceDriver
+use_namespaces                  = True
+metadata_proxy_shared_secret    = sharedkey
 
 
 [controller]
