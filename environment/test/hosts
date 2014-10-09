@@ -40,8 +40,6 @@ rabbit_ha_queues               = False
 rabbitmq_user                  = rabbituser
 rabbitmq_password              = rabbitpassword
 
-
-
 ############
 # Keystone #
 ############
@@ -80,8 +78,8 @@ nova_vnc_port                  = 6080
 nova_vnc_protocol              = http
 nova_metadata_ip               = 10.224.147.162
 nova_metadata_port             = 8775
-virt_type                      = qemu   # Modify this to kvm in phy
-
+# Modify this to kvm in phy
+virt_type                      = qemu 
 
 ############
 #  Neutron #
@@ -104,6 +102,13 @@ interface_driver                = neutron.agent.linux.interface.OVSInterfaceDriv
 use_namespaces                  = True
 metadata_proxy_shared_secret    = sharedkey
 
+
+############
+#  Horizon #
+############
+memcached_servers               = 10.224.147.162:11211
+horizon_vip                     = 10.224.147.162
+ALLOWED_HOSTS                   = ['10.224.147.162']
 
 [controller]
 controller1

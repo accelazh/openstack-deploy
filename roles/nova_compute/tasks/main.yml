@@ -7,6 +7,12 @@
 - name: Configure nova config
   template: src=etc/nova/nova.conf.j2 dest=/etc/nova/nova.conf owner=nova group=nova mode=0640
 
+- name: Configure libvirtd
+  copy: src=etc/libvirt/libvirtd.conf dest=/etc/libvirt/libvirtd.conf
+
+- name: Configure libvirtd sysconfig
+  copy: src=etc/sysconfig/libvirtd dest=/etc/sysconfig/libvirtd
+
 - name: Start libvirtd
   service: name=libvirtd  state=started  enabled=yes
 
