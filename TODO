@@ -1,4 +1,4 @@
-[function]
+BACKLOG:
 mysql HA
 rabbitmq HA
 glance registry HA support
@@ -8,10 +8,57 @@ dhcp_delete_namespaces = False
 router_delete_namespaces = False
 send_arp_for_ha
 br-ex + eth1
-
-
-[tunning]
+keystone notification
+debug/verbose
+keystone cache
+keystone catalog performance
+Centralize Log?
+Glance User Cinder as Backend?
 mysql tunning
 rabbitmq tunning
 keystone UUID -> PKI
 keystone -> apache
+keystone performance
+Glance Performance?
+openstack service mysql的配置项是否要tunning？
+openstack service rabbitmq的配置项是否要tunning？
+Resize:   NoValidHost: No valid host was found. 
+glance notification
+nova notification
+default_availability_zone/internal_service_availability_zone
+default quota
+nova/glance/other api workers?
+enable_instance_password
+allow_resize_to_same_host
+allow_migrate_to_same_host
+default_schedule_zone
+multi_instance_display_name_template
+max_local_block_devices
+instance_usage_audit
+resume_guests_state_on_host_boot
+network_allocate_retries
+bandwidth_poll_interval
+sync_power_state_interval
+volume_usage_poll_interval
+shelved_poll_interval
+instance_delete_interval
+running_deleted_instance_action
+running_deleted_instance_timeout
+reboot_timeout
+instance_build_timeout
+rescue_timeout
+compute_monitors
+reserved_host_disk_mb
+reserved_host_memory_mb
+send_arp_for_ha
+ovs_vsctl_timeout
+dhcp_domain
+scheduler filter
+cpu/ram ratio
+io_ops_filter: max_io_ops_per_host
+servicegroup_driver
+vcpu_pin_set
+
+
+
+
