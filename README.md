@@ -1,7 +1,7 @@
 Target
 ================
   
-Deploy Openstack(Full HA, Tunning, Monitoring) on CentOS7
+Deploy Icehouse Openstack(Full HA, Tunning, Monitoring) on CentOS7
   
 Version History
 ================
