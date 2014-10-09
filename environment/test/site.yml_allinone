@@ -14,15 +14,8 @@
   - keystone_db_init
   - glance
   - nova_controller
-  - neutron_controller
-  - horizon
-
-- hosts: network
-  roles:
-  - neutron_network
-
-
-- hosts: compute
-  roles:
   - nova_compute
+  - neutron_controller
+  - neutron_network
   - neutron_compute
+  - horizon

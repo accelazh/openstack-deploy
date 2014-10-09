@@ -324,7 +324,7 @@ nova_admin_username = nova
 
 # The uuid of the admin nova tenant
 # nova_admin_tenant_id =
-nova_admin_tenant_id = {{ service_tenant_id.id }}
+nova_admin_tenant_id = {{ hostvars.controller1.service_tenant_id.id }}
 
 # Password for connection to nova in admin context.
 # nova_admin_password =

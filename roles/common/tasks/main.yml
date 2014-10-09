@@ -20,8 +20,10 @@
 - name: Disable SELinux in config
   selinux: state=disabled
 
-- name: Config ect/hosts
-  template: src=etc/hosts.j2 dest=/etc/hosts
+- name: Build hosts file
+  lineinfile: dest=/etc/hosts regexp='.*{{ item }}$' line="{{ hostvars[item].ansible_default_ipv4.address }} {{item}}" state=present
+  when: hostvars[item].ansible_default_ipv4.address is defined
+  with_items: groups['all']
 
 - name: Config hostname
   hostname: name={{ inventory_hostname }}
@@ -31,6 +33,4 @@
   with_items:
     - vim
     - htop
-
-- name: Install python-sqlalchemy because icehouse repo has bug now...
-  yum: name=ftp://ftp.sunet.se/pub/Linux/distributions/fedora/epel/7/x86_64/p/python-sqlalchemy-0.8.4-1.el7.x86_64.rpm state=present
+    - psmisc
