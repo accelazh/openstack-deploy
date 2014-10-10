@@ -59,6 +59,13 @@ io_ops_filter: max_io_ops_per_host
 servicegroup_driver
 vcpu_pin_set
 
+#
+swift basic cluster deploy
+cinder with local store driver
+ceph cluster
+integrate ceph with cinder
+mysql clustering tech survey
+
 
 
 
