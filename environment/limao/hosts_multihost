@@ -1,17 +1,13 @@
 #
 # MGMT: 
+# haproxy      10.224.147.230
+#
 # controller1  10.224.147.231
 # controller2  10.224.147.232
 # network1     10.224.147.233
 # network2     10.224.147.234
 # compute1     10.224.147.241
 # compute2     10.224.147.242
-#
-# DATA:
-# network1     100.100.100.1
-# network2     100.100.100.2
-# compute1     100.100.100.11
-# compute2     100.100.100.12
 #
 
 
@@ -64,6 +60,9 @@ glance_admin_email             = limao@cisco.com
 glance_service_url_vip         = 10.224.147.161
 glance_service_url_port        = 9292
 glance_service_url_protocol    = http
+glance_registry_url_vip        = 10.224.147.161
+glance_registry_url_port       = 9191
+glance_registry_url_protocol   = http
 
 ############
 #   Nova   #
@@ -109,6 +108,7 @@ metadata_proxy_shared_secret    = sharedkey
 ############
 memcached_servers               = 10.224.147.161:11211
 horizon_vip                     = 10.224.147.161
+horizon_vport                   = 443
 ALLOWED_HOSTS                   = ['10.224.147.161']
 
 [controller]
