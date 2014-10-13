@@ -51,75 +51,137 @@ listen stats 0.0.0.0:9000       #Listen on all IP's on port 9000
 
 
 # horizon
-listen  horizon {{ horizon_vip }}:{{ horizon_vport }}
-        option forwardfor
-        option  httpchk
-        balance roundrobin
-        cookie  SERVERID insert indirect nocache
+frontend horizon_frontend
+	bind {{ horizon_vip }}:{{ horizon_vport }} ssl crt /etc/haproxy/haproxy.crt
+	mode http
+	option httpclose
+	option forwardfor
+	reqadd X-Forwarded-Protocol:\ https
+	default_backend horizon_server
+ 
+backend horizon_server
+	mode http
+	balance roundrobin
+	cookie SERVERID insert indirect nocache
 {% for host in groups['controller'] %}
         server horizon{{ loop.index }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:80 check cookie horizon{{ loop.index }}
 {% endfor %}
-        capture cookie vgnvisitor= len 32
 
 # keystone api
-listen  keystoneapi {{ keystone_service_url_vip }}:{{ keystone_service_url_port }}
-        option forwardfor
-        cookie  SERVERID rewrite
-        balance roundrobin
+frontend keystone_frontend
+	bind {{ keystone_service_url_vip }}:{{ keystone_service_url_port }} ssl crt /etc/haproxy/haproxy.crt
+	mode http
+	option httpclose
+	option forwardfor
+	reqadd X-Forwarded-Protocol:\ https
+	default_backend keystone_server
+
+backend keystone_server
+	mode http
+	balance roundrobin
+	cookie SERVERID insert indirect nocache
 {% for host in groups['controller'] %}
         server keystone{{ loop.index }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:5000 check cookie keystone{{ loop.index }}
 {% endfor %}
 
 # keystone admin
-listen  keystoneadmin {{ keystone_admin_url_vip }}:{{ keystone_admin_url_port }}
-        option forwardfor
-        cookie  SERVERID rewrite
-        balance roundrobin
+frontend keystone_admin_frontend
+	bind {{ keystone_admin_url_vip }}:{{ keystone_admin_url_port }} ssl crt /etc/haproxy/haproxy.crt
+	mode http
+	option httpclose
+	option forwardfor
+	reqadd X-Forwarded-Protocol:\ https
+	default_backend keystone_admin_server
+
+backend keystone_admin_server
+	mode http
+	balance roundrobin
+	cookie SERVERID insert indirect nocache
 {% for host in groups['controller'] %}
         server keystoneadmin{{ loop.index }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:35357 check cookie keystoneadmin{{ loop.index }}
 {% endfor %}
 
 # glance api
-listen  glanceapi {{ glance_service_url_vip }}:{{ glance_service_url_port }}
-        option forwardfor
-        cookie  SERVERID rewrite
-        balance roundrobin
+frontend glanceapi_frontend
+	bind {{ glance_service_url_vip }}:{{ glance_service_url_port }} ssl crt /etc/haproxy/haproxy.crt
+	mode http
+	option httpclose
+	option forwardfor
+	reqadd X-Forwarded-Protocol:\ https
+	default_backend glanceapi_server
+
+backend glanceapi_server
+	mode http
+	balance roundrobin
+	cookie SERVERID insert indirect nocache
 {% for host in groups['controller'] %}
         server glanceapi{{ loop.index }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:9292 check cookie glanceapi{{ loop.index }}
 {% endfor %}
 
 # glance registry
-listen  glanceregistry {{ glance_registry_url_vip }}:{{ glance_registry_url_port }}
-        option forwardfor
-        cookie  SERVERID rewrite
-        balance roundrobin
+frontend glanceregistry_frontend
+	bind {{ glance_registry_url_vip }}:{{ glance_registry_url_port }} ssl crt /etc/haproxy/haproxy.crt
+	mode http
+	option httpclose
+	option forwardfor
+	reqadd X-Forwarded-Protocol:\ https
+	default_backend glanceregistry_server
+
+backend glanceregistry_server
+	mode http
+	balance roundrobin
+	cookie SERVERID insert indirect nocache
 {% for host in groups['controller'] %}
         server glanceregistry{{ loop.index }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:9191 check cookie glanceregistry{{ loop.index }}
 {% endfor %}
 
 # nova api
-listen  novaapi {{ nova_service_url_vip }}:{{ nova_service_url_port }}
+frontend novaapi_frontend
+        bind {{ nova_service_url_vip }}:{{ nova_service_url_port }} ssl crt /etc/haproxy/haproxy.crt
+        mode http
+        option httpclose
         option forwardfor
-        cookie  SERVERID rewrite
+        reqadd X-Forwarded-Protocol:\ https
+        default_backend novaapi_server
+
+backend novaapi_server
+        mode http
         balance roundrobin
+        cookie SERVERID insert indirect nocache
 {% for host in groups['controller'] %}
         server novapi{{ loop.index }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:8774 check cookie novaapi{{ loop.index }}
 {% endfor %}
 
 # nova novnc
-listen  novanovnc {{ nova_vnc_vip }}:{{ nova_vnc_port }}
+frontend novanovnc_frontend
+        bind {{ nova_vnc_vip }}:{{ nova_vnc_port }} ssl crt /etc/haproxy/haproxy.crt
+        mode http
+        option httpclose
         option forwardfor
-        cookie  SERVERID rewrite
+        reqadd X-Forwarded-Protocol:\ https
+        default_backend novanovnc_server
+
+backend novanovnc_server
+        mode http
         balance roundrobin
+        cookie SERVERID insert indirect nocache
 {% for host in groups['controller'] %}
         server novanovnc{{ loop.index }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:6080 check cookie novanovnc{{ loop.index }}
 {% endfor %}
 
 # neutron
-listen  neutron {{ neutron_service_url_vip }}:{{ neutron_service_url_port }}
+frontend neutron_frontend
+        bind {{ neutron_service_url_vip }}:{{ neutron_service_url_port }} ssl crt /etc/haproxy/haproxy.crt
+        mode http
+        option httpclose
         option forwardfor
-        cookie  SERVERID rewrite
+        reqadd X-Forwarded-Protocol:\ https
+        default_backend neutron_server
+
+backend neutron_server
+        mode http
         balance roundrobin
+        cookie SERVERID insert indirect nocache
 {% for host in groups['controller'] %}
         server neutron{{ loop.index }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:9696 check cookie neutron{{ loop.index }}
 {% endfor %}

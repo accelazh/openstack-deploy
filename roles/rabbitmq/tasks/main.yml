@@ -7,6 +7,9 @@
 - name: Start RabbitMQ
   service: name=rabbitmq-server state=started enabled=true
 
+- name: Restart RabbitMQ
+  service: name=rabbitmq-server state=restarted enabled=true
+
 - name: Configure RabbitMQ User
   rabbitmq_user: user={{rabbitmq_user}}
                  password={{rabbitmq_password}}
@@ -15,7 +18,4 @@
                  read_priv=.*
                  write_priv=.*
                  state=present
-
-- name: Restart RabbitMQ
-  service: name=rabbitmq-server state=restarted enabled=true
 

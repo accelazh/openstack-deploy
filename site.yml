@@ -10,13 +10,10 @@
   roles:
   - haproxy
 
-- hosts: controller1
+- hosts: controller
   roles:
   - mysql
   - rabbitmq
-
-- hosts: controller
-  roles:
   - keystone
   - keystone_db_init
   - glance

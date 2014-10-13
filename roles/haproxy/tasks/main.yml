@@ -7,5 +7,5 @@
 - name: Configure haproxy
   template: src=etc/haproxy/haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg group=haproxy owner=haproxy mode=0644
 
-#- name: Start haproxy
-#  service: name=haproxy  state=started  enabled=yes 
+- name: Start haproxy
+  service: name=haproxy  state=started  enabled=yes 
