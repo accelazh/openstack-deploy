@@ -32,8 +32,8 @@ management_network      = 10.224.147.%
 ############
 # RabbitMQ #
 ############
-rabbit_hosts                   = 10.224.147.231:5672
-rabbit_ha_queues               = False
+rabbit_hosts                   = 10.224.147.231:5672,10.224.147.232.5672
+rabbit_ha_queues               = True
 rabbitmq_user                  = rabbituser
 rabbitmq_password              = rabbitpassword
 
