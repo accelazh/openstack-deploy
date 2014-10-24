@@ -12,6 +12,9 @@ Basic deploy,  We ONLY support Keystone/Nova/Neutron/Glance/Horizon in this vers
 V0.2 (10/10 - 10/31)
 Support API HA,RabbitMQ HA, Mysql HA[Limao]
   
+V0.3
+Haproxy HA, SSL, cinder
+
   
 Now : V0.2 ING
 
