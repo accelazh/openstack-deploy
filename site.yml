@@ -20,6 +20,7 @@
   - nova_controller
   - neutron_controller
   - horizon
+  serial: 1
 
 - hosts: network
   roles:
